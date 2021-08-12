@@ -9,7 +9,7 @@ from openpyxl import Workbook
 with open("DVD.txt") as movie_file:
 	movies = movie_file.read().splitlines()
 
-
+user_language = "fr"    #put your language here
 
 movie_db = sqlite3.connect("movie_database.db")
 movie_db_cursor = movie_db.cursor()
@@ -43,7 +43,7 @@ def create_request(movie_db, movie_db_cursor, task):
 
 
 
-tmdb.API_KEY = "INSERT YOUR KEY HERE"
+tmdb.API_KEY = "YOUR_API_KEY"    #put the API key here
 tmdb.REQUESTS_SESSION = requests.Session()
 search = tmdb.Search()
 movie = tmdb.Movies(300)
@@ -189,7 +189,7 @@ def get_genres(title, checked_ids, slow):
 		#print("ok 2")
 
 		#print(title)
-		response = search.movie(query=title,language = "fr")
+		response = search.movie(query=title,language = user_language)
 		#print("so far so good")
 		results_number = 0
 		for s in search.results:
